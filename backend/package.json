@@ -2,11 +2,12 @@
   "name": "gym-fitness-backend",
   "version": "1.0.0",
   "description": "Backend API for German Fitness Gym Website",
-  "main": "server.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node api/index.js",
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'No build step required'",
+    "vercel-build": "echo 'No build step required'"
   },
   "keywords": ["gym", "fitness", "backend", "api", "express", "mongodb"],
   "author": "German Fitness Team",

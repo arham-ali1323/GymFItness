@@ -1,0 +1,11 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/frontend/app/user/diet-plan/menu/page": [
+      "static/media/0acc7fdf55eb3220-s.p.532ccaa1.woff2",
+      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

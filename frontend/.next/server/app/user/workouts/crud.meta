@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/workouts/layout,_N_T_/user/workouts/crud/layout,_N_T_/user/workouts/crud/page,_N_T_/user/workouts/crud"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/user/workouts/crud/__PAGE__",
+    "/user/workouts/crud",
+    "/user/workouts",
+    "/user",
+    "/_index",
+    "/_head"
+  ]
+}

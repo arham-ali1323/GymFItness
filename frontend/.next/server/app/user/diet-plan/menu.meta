@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/diet-plan/layout,_N_T_/user/diet-plan/menu/layout,_N_T_/user/diet-plan/menu/page,_N_T_/user/diet-plan/menu"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/user/diet-plan/menu/__PAGE__",
+    "/user/diet-plan/menu",
+    "/user/diet-plan",
+    "/user",
+    "/_index",
+    "/_head"
+  ]
+}
