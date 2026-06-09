@@ -1,0 +1,28 @@
+[00:00:04.007] Server  LOG     ✓ Ready in 3s
+[00:00:08.802] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:11.896] Server  WARN    [next-auth][warn][NEXTAUTH_URL] "\nhttps://next-auth.js.org/warnings#nextauth_url"
+[00:00:11.897] Server  WARN    [next-auth][warn][NO_SECRET] "\nhttps://next-auth.js.org/warnings#no_secret"
+[00:00:16.694] Server  LOG     ○ Compiling / ...
+[00:00:18.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:20.842] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:00:51.473] Server  LOG     ✓ Compiled in 4.4s
+[00:01:04.052] Browser WARN    Image with src "/images/german-and-fitness.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:01:20.012] Server  LOG     ✓ Compiled in 637ms
+[00:01:20.885] Browser ERROR   ./frontend/components/home/trainers-section.tsx:21:37
+Parsing ecmascript source code failed
+  19 |     clients: 150,
+  20 |     phone: "0321-1234567",
+> 21 |     email: "ahmed@germanfitness.com"z
+     |                                     ^
+  22 |   },
+  23 |   {
+  24 |     id: 2,
+
+Expected ',', got 'z'
+
+Import trace:
+  Server Component:
+    ./frontend/components/home/trainers-section.tsx
+    ./frontend/app/classes/page.tsx
+[00:01:27.524] Server  LOG     ✓ Compiled in 488ms
