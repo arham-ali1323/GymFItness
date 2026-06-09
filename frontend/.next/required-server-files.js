@@ -140,7 +140,7 @@ self.__SERVER_FILES_MANIFEST={
       "isExperimentalCompile": false
     }
   },
-  "appDir": "C:\\Users\\arham\\OneDrive\\Documents\\GymFItness\\frontend",
+  "appDir": "D:\\GymFItness\\frontend",
   "relativeAppDir": "frontend",
   "files": [
     ".next\\routes-manifest.json",

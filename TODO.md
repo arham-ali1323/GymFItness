@@ -1,7 +1,8 @@
-# TODO
+# TODO - Fix build issues
 
-- [ ] Update `frontend/components/home/trainers-section.tsx` so trainer full details (bio, certifications, achievements, etc.) appear only on hover.
-- [ ] Ensure default (non-hover) state shows only trainer name (and optionally title can be removed if required).
-- [ ] Keep existing hover behavior for image overlay/details.
-- [ ] Verify UI by running dev server / checking build (if applicable).
+- [ ] Run `npm run build` from repo root and capture the first failing error(s)
+- [ ] Fix frontend build issues (Prisma generate first, then Next build)
+- [ ] Fix backend build issues (if any)
+- [ ] Re-run `npm run build` until it completes successfully
+- [ ] (Optional) Run `npm run lint --workspace=frontend` to ensure no additional issues
 
