@@ -1,3 +1,0 @@
-{
-  "/api/auth/user-proxy/[...path]/route": "app/api/auth/user-proxy/[...path]/route.js"
-}
