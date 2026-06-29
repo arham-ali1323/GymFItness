@@ -4,6 +4,18 @@ const nextConfig: NextConfig = {
   /* config options here */
   // reactCompiler: true, // Disabled due to Turbopack instability
   turbopack: {}, // Empty config to silence Turbopack warning
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
