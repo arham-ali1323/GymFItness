@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,7 +11,6 @@ import { Dumbbell, Eye, EyeOff, Loader2 } from "lucide-react";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollToTopWaterFill from "@/components/ui/back-to-top";
-import { useAuth } from "@/lib/authContext";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,15 +19,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  const { login, isAuthenticated } = useAuth();
   const router = useRouter();
-
-  // Redirect if already authenticated
-  React.useEffect(() => {
-    if (isAuthenticated) {
-      router.push('/');
-    }
-  }, [isAuthenticated, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +27,20 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      await login(email, password);
-      router.push('/');
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError('Invalid email or password');
+      } else {
+        router.push('/');
+        router.refresh();
+      }
     } catch (err: any) {
-      setError(err.message || 'Login failed. Please try again.');
+      setError('Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

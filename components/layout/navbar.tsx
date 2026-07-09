@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 import { Mail, Phone, MapPin, Menu, X, ChevronDown, LogOut, User } from "lucide-react";
 import {
   FaFacebookF,
@@ -10,18 +11,21 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import Link from "next/link";
-import { useAuth } from "@/lib/authContext";
+import { services } from "@/data/services";
+import { brands } from "@/data/brands";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [moreDropdown, setMoreDropdown] = useState(false);
+  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [brandsDropdown, setBrandsDropdown] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(
     null,
   );
-  const { user, logout, isAuthenticated } = useAuth();
+  const { data: session } = useSession();
   const router = useRouter();
 
-  const handleMouseEnter = () => {
+  const handleMoreMouseEnter = () => {
     if (dropdownTimeout) {
       clearTimeout(dropdownTimeout);
       setDropdownTimeout(null);
@@ -29,15 +33,45 @@ export default function Navbar() {
     setMoreDropdown(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMoreMouseLeave = () => {
     const timeout = setTimeout(() => {
       setMoreDropdown(false);
     }, 150);
     setDropdownTimeout(timeout);
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleServicesMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setServicesDropdown(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setServicesDropdown(false);
+    }, 150);
+    setDropdownTimeout(timeout);
+  };
+
+  const handleBrandsMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setBrandsDropdown(true);
+  };
+
+  const handleBrandsMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setBrandsDropdown(false);
+    }, 150);
+    setDropdownTimeout(timeout);
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
     router.push('/login');
   };
 
@@ -102,21 +136,115 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-10 text-sm text-gray-600 font-bold uppercase">
-            {["Classes", "Services", "About", "Contact"].map((item) => (
-              <Link
-                key={item}
-                href={item.toLowerCase()}
-                className="hover:text-orange-500 transition"
+            <Link
+              href="classes"
+              className="hover:text-orange-500 transition"
+            >
+              Classes
+            </Link>
+
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button
+                onMouseEnter={handleServicesMouseEnter}
+                onMouseLeave={handleServicesMouseLeave}
+                className="flex items-center gap-1 hover:text-orange-500 transition"
               >
-                {item}
-              </Link>
-            ))}
+                Services
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {servicesDropdown && (
+                <div
+                  onMouseEnter={handleServicesMouseEnter}
+                  onMouseLeave={handleServicesMouseLeave}
+                  className="absolute top-full left-0 mt-2 w-64 bg-black border border-gray-700 rounded-lg shadow-lg z-50"
+                >
+                  <div className="py-2">
+                    <Link
+                      href="/services"
+                      className="block px-4 py-2 text-sm text-gray-300 hover:bg-orange-600 hover:text-white transition font-semibold"
+                    >
+                      All Services
+                    </Link>
+                    {services.map((service) => (
+                      <Link
+                        key={service.id}
+                        href={`/services/${service.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-400 hover:bg-orange-600 hover:text-white transition"
+                      >
+                        {service.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="about"
+              className="hover:text-orange-500 transition"
+            >
+              About
+            </Link>
+
+            <Link
+              href="contact"
+              className="hover:text-orange-500 transition"
+            >
+              Contact
+            </Link>
+
+            {/* Brands Mega Menu */}
+            <div className="relative">
+              <button
+                onMouseEnter={handleBrandsMouseEnter}
+                onMouseLeave={handleBrandsMouseLeave}
+                className="flex items-center gap-1 hover:text-orange-500 transition"
+              >
+                Brands
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {brandsDropdown && (
+                <div
+                  onMouseEnter={handleBrandsMouseEnter}
+                  onMouseLeave={handleBrandsMouseLeave}
+                  className="absolute top-full left-0 mt-2 w-[800px] bg-black border border-gray-700 rounded-lg shadow-lg z-50"
+                >
+                  <div className="p-6">
+                    <div className="grid grid-cols-4 gap-4">
+                      {brands.slice(0, 12).map((brand) => (
+                        <Link
+                          key={brand.id}
+                          href={`/brands/${brand.slug}`}
+                          className="block p-3 rounded-lg hover:bg-gray-800 transition"
+                        >
+                          <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold mb-2">
+                            {brand.name.charAt(0)}
+                          </div>
+                          <p className="text-sm text-gray-300 font-semibold">{brand.name}</p>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-700">
+                      <Link
+                        href="/brands"
+                        className="text-orange-500 text-sm font-semibold hover:text-orange-400 transition"
+                      >
+                        View All Brands →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* More Dropdown */}
             <div className="relative">
               <button
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={handleMoreMouseEnter}
+                onMouseLeave={handleMoreMouseLeave}
                 className="flex items-center gap-1 hover:text-orange-500 transition"
               >
                 More
@@ -125,8 +253,8 @@ export default function Navbar() {
 
               {moreDropdown && (
                 <div
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseEnter={handleMoreMouseEnter}
+                  onMouseLeave={handleMoreMouseLeave}
                   className="absolute top-full left-0 mt-2 w-48 bg-black border border-gray-700 rounded-lg shadow-lg"
                 >
                   <div className="py-2">
@@ -168,11 +296,11 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            {isAuthenticated && user ? (
+            {session?.user ? (
               <div className="hidden lg:flex items-center gap-3">
                 <div className="flex items-center gap-2 text-sm">
                   <User className="w-4 h-4 text-orange-500" />
-                  <span className="text-gray-300">{user.name}</span>
+                  <span className="text-gray-300">{session.user.name}</span>
                 </div>
                 <button
                   onClick={handleLogout}
@@ -205,19 +333,102 @@ export default function Navbar() {
           }`}
         >
           <nav className="flex flex-col items-center gap-6 py-8 text-sm font-semibold uppercase">
-            {["Classes", "Services", "About", "Contact"].map((item) => (
-              <Link
-                key={item}
-                href={item.toLowerCase()}
-                className="hover:text-orange-500 transition"
-                onClick={() => setOpen(false)}
+            <Link
+              href="classes"
+              className="hover:text-orange-500 transition"
+              onClick={() => setOpen(false)}
+            >
+              Classes
+            </Link>
+
+            {/* Mobile Services Dropdown */}
+            <div className="flex flex-col items-center gap-2 w-full px-8">
+              <button
+                onClick={() => setServicesDropdown(!servicesDropdown)}
+                className="flex items-center gap-1 hover:text-orange-500 transition"
               >
-                {item}
-              </Link>
-            ))}
+                Services
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${servicesDropdown ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {servicesDropdown && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <Link
+                    href="/services"
+                    className="text-sm text-gray-400 hover:text-orange-500 transition"
+                    onClick={() => setOpen(false)}
+                  >
+                    All Services
+                  </Link>
+                  {services.map((service) => (
+                    <Link
+                      key={service.id}
+                      href={`/services/${service.slug}`}
+                      className="text-sm text-gray-400 hover:text-orange-500 transition"
+                      onClick={() => setOpen(false)}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="about"
+              className="hover:text-orange-500 transition"
+              onClick={() => setOpen(false)}
+            >
+              About
+            </Link>
+
+            <Link
+              href="contact"
+              className="hover:text-orange-500 transition"
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </Link>
+
+            {/* Mobile Brands Dropdown */}
+            <div className="flex flex-col items-center gap-2 w-full px-8">
+              <button
+                onClick={() => setBrandsDropdown(!brandsDropdown)}
+                className="flex items-center gap-1 hover:text-orange-500 transition"
+              >
+                Brands
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${brandsDropdown ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {brandsDropdown && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full max-h-60 overflow-y-auto">
+                  <Link
+                    href="/brands"
+                    className="text-sm text-gray-400 hover:text-orange-500 transition"
+                    onClick={() => setOpen(false)}
+                  >
+                    All Brands
+                  </Link>
+                  {brands.slice(0, 10).map((brand) => (
+                    <Link
+                      key={brand.id}
+                      href={`/brands/${brand.slug}`}
+                      className="text-sm text-gray-400 hover:text-orange-500 transition"
+                      onClick={() => setOpen(false)}
+                    >
+                      {brand.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Mobile More Dropdown */}
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2 w-full px-8">
               <button
                 onClick={() => setMoreDropdown(!moreDropdown)}
                 className="flex items-center gap-1 hover:text-orange-500 transition"
@@ -231,18 +442,18 @@ export default function Navbar() {
               {moreDropdown && (
                 <div className="flex flex-col items-center gap-2 mt-2">
                   <Link
-                    href="/gallery"
+                    href="/shop"
                     className="text-sm text-gray-400 hover:text-orange-500 transition"
                     onClick={() => setOpen(false)}
                   >
-                    Gallery
+                    Shop
                   </Link>
                   <Link
-                    href="/testimonials"
+                    href="team"
                     className="text-sm text-gray-400 hover:text-orange-500 transition"
                     onClick={() => setOpen(false)}
                   >
-                    Testimonials
+                    Team
                   </Link>
                   <Link
                     href="/pricing"
@@ -259,21 +470,21 @@ export default function Navbar() {
                     FAQ
                   </Link>
                   <Link
-                    href="/blog"
+                    href="/bmi-calculater"
                     className="text-sm text-gray-400 hover:text-orange-500 transition"
                     onClick={() => setOpen(false)}
                   >
-                    Blog
+                    BMI Calculator
                   </Link>
                 </div>
               )}
             </div>
 
-            {isAuthenticated && user ? (
+            {session?.user ? (
               <div className="mt-4 flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2 text-sm">
                   <User className="w-4 h-4 text-orange-500" />
-                  <span className="text-gray-300">{user.name}</span>
+                  <span className="text-gray-300">{session.user.name}</span>
                 </div>
                 <button
                   onClick={handleLogout}
