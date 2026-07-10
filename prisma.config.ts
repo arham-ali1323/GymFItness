@@ -1,4 +1,3 @@
 export default {
   schema: './prisma/schema.prisma',
-  datasourceUrl: process.env.DATABASE_URL,
 }
