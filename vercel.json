@@ -1,4 +1,19 @@
 {
-  "functions": {}
+  "functions": {
+    "app/**": {
+      "memory": 2048,
+      "maxDuration": 30
+    },
+    "api/**": {
+      "memory": 2048,
+      "maxDuration": 30
+    }
+  },
+  "regions": ["iad1"],
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_BUILD_TIME": "$NOW"
+    }
+  }
 }
 
