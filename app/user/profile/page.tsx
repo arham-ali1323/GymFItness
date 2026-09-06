@@ -11,9 +11,9 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   const [profile, setProfile] = useState({
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
+    firstName: 'Arham',
+    lastName: 'Ali',
+    email: 'arham@test.com',
     phone: '+1 (555) 123-4567',
     dateOfBirth: '1990-01-15',
     location: 'New York, NY',

@@ -245,7 +245,7 @@ const OnboardingStep = () => {
                   <Users className="w-32 h-32 text-white" />
                 )}
               </div>
-              <h1 className="text-4xl font-bold mb-4">FitNexus</h1>
+              <h1 className="text-4xl font-bold mb-4">GymFitness</h1>
               <p className="text-xl opacity-90">
                 {onboardingComplete ? 'Welcome to Your Fitness Journey!' : 'Your Journey to Fitness Starts Here'}
               </p>

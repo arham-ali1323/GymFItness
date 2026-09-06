@@ -178,7 +178,7 @@ const FitnessDashboard = () => {
       level: "Intermediate",
       duration: "45 min",
       image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&crop=center&auto=format&dpr=2&q=80",
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop&crop=center&auto=format&dpr=2&q=80",
       color: "from-blue-500 to-purple-600",
     },
     {
