@@ -5,7 +5,7 @@ import LoginForm from "./login-form";
 export const metadata: Metadata = {
   title: "Member Login | German Fitness Sahiwal",
   description:
-    "Log in to your German Fitness Sahiwal member account to manage your membership, view class schedules, track your fitness progress, and renew your subscription online.",
+    "Log in to your German Fitness member account to manage your membership, view class schedules, track progress, and renew your subscription online.",
   alternates: {
     canonical: "/login",
   },

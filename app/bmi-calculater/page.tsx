@@ -314,6 +314,56 @@ setResult({
             </div>
           </div>
         </div>
+
+        {/* Educational Content */}
+        <div className="max-w-5xl mx-auto mt-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Understanding Your BMI and Daily Calorie Needs
+          </h2>
+          <p className="text-gray-400 text-lg leading-relaxed mb-8">
+            Body Mass Index (BMI) is a simple way to screen whether your weight falls
+            within a healthy range for your height. A BMI between 18.5 and 24.9 is
+            considered healthy, while values below or above that range can signal a need
+            to focus on nutrition and strength training. Alongside BMI, we estimate your
+            Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) so you
+            know roughly how many calories your body burns each day.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="p-6 rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-black">
+              <h3 className="text-xl font-bold text-orange-500 mb-3">
+                What Is a Healthy BMI?
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Under 18.5 is underweight, 18.5 to 24.9 is healthy, 25 to 29.9 is
+                overweight, and 30 or above is obese. If your BMI is outside the healthy
+                range, combining resistance training with a balanced nutrition plan is the
+                most effective and sustainable way to shift it in the right direction.
+                Our expert trainers can help you build a program that works for your body.
+              </p>
+            </div>
+            <div className="p-6 rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-black">
+              <h3 className="text-xl font-bold text-orange-500 mb-3">
+                How We Calculate Your Macros
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Based on your calorie target, we recommend a protein-first split to protect
+                muscle while you build or lose weight. Protein supports recovery and growth,
+                fats keep hormones healthy, and carbohydrates fuel your workouts. These
+                numbers are a starting point; track your progress for a few weeks and adjust
+                based on how your body responds.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-gray-400 text-lg leading-relaxed">
+            A BMI calculator is a useful starting point, but it is not the whole story.
+            Muscle weighs more than fat, so highly trained athletes may show a higher BMI
+            while being exceptionally healthy. For a full assessment that includes body
+            composition, fitness testing, and a personalized training and nutrition plan,
+            book a free consultation at German Fitness in Sahiwal today.
+          </p>
+        </div>
       </div>
     </div>
     <SubscribeBanner/>

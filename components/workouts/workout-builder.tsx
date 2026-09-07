@@ -256,6 +256,52 @@ export default function WorkoutBuilder() {
               Talk to a Trainer
             </Link>
           </div>
+
+          {/* How It Works */}
+          <div className="mt-16 border-t border-slate-800 pt-12">
+            <h2 className="text-3xl font-bold mb-4">How to Use Your Workout Routine</h2>
+            <p className="text-gray-400 text-lg leading-relaxed mb-8">
+              A great plan only works if you follow it consistently. Start each session with a
+              five-to-ten minute warm-up of light cardio and dynamic stretching. Perform the
+              listed exercises with the suggested sets and repetitions, keeping at least one
+              day of rest between sessions for the same muscle group. Aim to increase the weight
+              slightly each week while keeping your form clean.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-xl border border-slate-700 bg-slate-900/60">
+                <h3 className="text-xl font-bold text-orange-500 mb-3">Warm-Up</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Spend five to ten minutes on light cardio and dynamic stretching before your
+                  working sets. A proper warm-up raises your heart rate, improves range of
+                  motion, and significantly reduces your risk of injury.
+                </p>
+              </div>
+              <div className="p-6 rounded-xl border border-slate-700 bg-slate-900/60">
+                <h3 className="text-xl font-bold text-orange-500 mb-3">Progressive Overload</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  To keep building strength and muscle, gradually increase the weight or the
+                  number of repetitions each week. Small, consistent progress beats occasional
+                  heroic efforts, and it keeps your joints and connective tissue healthy.
+                </p>
+              </div>
+              <div className="p-6 rounded-xl border border-slate-700 bg-slate-900/60">
+                <h3 className="text-xl font-bold text-orange-500 mb-3">Recovery</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Muscle grows while you rest, not while you train. Prioritize seven to nine
+                  hours of sleep, eat enough protein, and listen to your body. Rest days are
+                  part of the plan, not a sign of weakness.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-gray-400 text-lg leading-relaxed mt-8">
+              If you are unsure about any exercise form or want a routine built around your
+              specific body, experience level, and schedule, our certified trainers at German
+              Fitness will be happy to design one with you. Visit us in Sahiwal for a free
+              consultation and see how a personalized approach transforms your results.
+            </p>
+          </div>
         </div>
       </section>
     </div>

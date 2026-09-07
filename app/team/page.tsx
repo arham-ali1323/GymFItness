@@ -21,6 +21,42 @@ export default function TeamGridPage() {
             Our certified and experienced trainers are here to guide you every step of the way toward your fitness goals.
           </p>
         </div>
+
+        {/* Why Our Trainers */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-white mb-6">
+            Why Train With German Fitness Coaches
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div>
+              <h3 className="text-xl font-bold text-orange-500 mb-2">
+                Certified Expertise
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Every coach on our team holds recognized international certifications in personal training, strength and conditioning, and sports nutrition. They stay current with the latest evidence-based coaching methods so your program is always built on science, not guesswork.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-orange-500 mb-2">
+                Personalized Programming
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                No two bodies are alike, and neither are your goals. Our trainers assess your movement, experience, and lifestyle to build a plan tailored to you, whether you want to build muscle, lose fat, improve athletic performance, or simply feel stronger and healthier every day.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-orange-500 mb-2">
+                Accountability That Lasts
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Consistency is the real secret to results. Our coaches track your workouts, review your progress, and keep you motivated week after week. Many of our members have trained with the same coach for years, and the transformation stories they share are the reason we love what we do.
+              </p>
+            </div>
+          </div>
+          <p className="text-gray-400 leading-relaxed max-w-3xl">
+            Every member who trains at German Fitness in Sahiwal gets access to expert guidance, one-on-one support, and a training community that pushes you to show up and improve. Whether you are a complete beginner or an experienced athlete, our team will meet you where you are and take you where you want to go.
+          </p>
+        </section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trainersData.map((trainer) => (
             <div
