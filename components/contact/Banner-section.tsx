@@ -35,9 +35,9 @@ export default function PageHero() {
 
       {/* Content */}
       <div className="relative z-10 text-center">
-        <h1 className="font-orbitron text-white text-4xl md:text-6xl font-bold tracking-widest uppercase">
+        <h2 className="font-orbitron text-white text-4xl md:text-6xl font-bold tracking-widest uppercase">
           {pageName}
-        </h1>
+        </h2>
 
         {/* Breadcrumb */}
         <div className="mt-4 flex items-center justify-center gap-2 text-sm tracking-widest uppercase">

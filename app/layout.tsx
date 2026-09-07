@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "German Fitness Sahiwal | Transform Your Body in 90 Days | Best Gym in Pakistan",
-  description: "Join German Fitness, Sahiwal's premier gym with 500+ happy members. Expert trainers, 24/7 access, personalized nutrition plans. Start your transformation today with a free trial!",
+  title: "German Fitness Sahiwal | Transform Your Body in 90 Days",
+  description: "Join German Fitness, Sahiwal's premier gym. Expert trainers, 24/7 access, and personalized nutrition plans. Start your transformation today with a free trial!",
   keywords: "gym Sahiwal, fitness center Pakistan, personal trainer, weight loss, muscle building, 24/7 gym, German Fitness, best gym Sahiwal, fitness classes, nutrition plans",
   authors: [{ name: "German Fitness Team" }],
   creator: "German Fitness",

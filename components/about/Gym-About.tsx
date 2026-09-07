@@ -106,10 +106,10 @@ export default function GymAboutSection() {
             </span>
           </motion.div>
           
-          <h2 className="text-5xl md:text-7xl font-black font-orbitron mb-6 uppercase">
+          <h1 className="text-5xl md:text-7xl font-black font-orbitron mb-6 uppercase">
             SAHIWAL'S PREMIER
             <span className="block text-orange-500">FITNESS DESTINATION</span>
-          </h2>
+          </h1>
           
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Transform your life at German Fitness - where cutting-edge equipment meets expert coaching in an environment built for champions.

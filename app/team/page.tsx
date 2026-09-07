@@ -13,6 +13,14 @@ export default function TeamGridPage() {
 
       {/* Team Grid */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+        <div className="text-center mb-12">
+          <h1 className="font-orbitron text-4xl md:text-6xl font-black uppercase tracking-wider text-white mb-3">
+            Meet Our Trainers
+          </h1>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Our certified and experienced trainers are here to guide you every step of the way toward your fitness goals.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trainersData.map((trainer) => (
             <div

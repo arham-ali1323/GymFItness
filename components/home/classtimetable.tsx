@@ -75,9 +75,9 @@ export default function ClassTimeTable() {
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-wider">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-wider">
               CLASS TIME TABLE
-            </h1>
+            </h2>
           </div>
           
           <div className="max-w-md">
@@ -138,7 +138,7 @@ export default function ClassTimeTable() {
           <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105">
             BOOK A CLASS NOW
           </button>
-          <Link href="/user/workouts/create" className=" mx-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105">
+          <Link href="/create-workout" className=" mx-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105">
             Create your Own workout
           </Link>
         </div>

@@ -45,13 +45,13 @@ export default function FitnessEvents() {
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
               <div className="w-12 h-1 bg-orange-600 rotate-12"></div>
             </div>
-            <h1 className="font-orbitron text-5xl md:text-6xl font-bold tracking-wider leading-tight mb-8">
+            <h2 className="font-orbitron text-5xl md:text-6xl font-bold tracking-wider leading-tight mb-8">
               JOIN TODAY
               <br />
               ON LATEST
               <br />
               EVENTS
-            </h1>
+            </h2>
 
             {/* Large "EVENT" Text Background */}
             <div className="absolute -left-8 top-32 text-gray-900/20 font-bold text-[180px] leading-none tracking-tighter pointer-events-none select-none hidden lg:block">
