@@ -101,7 +101,7 @@ export default function FitnessTrainers() {
             </span>
           </motion.div>
           
-          <h2 className="text-5xl md:text-7xl font-black font-orbitron mb-6 uppercase">
+          <h2 className="text-5xl text-white md:text-7xl font-black font-orbitron mb-6 uppercase">
             MEET OUR
             <span className="block text-orange-500">CERTIFIED TRAINERS</span>
           </h2>
@@ -134,7 +134,7 @@ export default function FitnessTrainers() {
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
         >
-          <h3 className="text-3xl font-bold mb-4">
+          <h3 className="text-3xl text-zinc-700 font-bold mb-4">
             Ready to Train with the <span className="text-orange-500">Best?</span>
           </h3>
           <p className="text-gray-400 mb-6">
