@@ -11,25 +11,22 @@ import ClassTimeTable from "@/components/home/classtimetable";
 import TestminialSection from "@/components/home/testimonial";
 import LatestEvents from "@/components/home/latest-events";
 import ScrollToTopWaterFill from "@/components/ui/back-to-top";
-import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function home() {
   return (
-    <ProtectedRoute>
-      <div>
-        <HeroSection />
-        <GroupWorkout />
-        <StatsSection />
-        <WhyChooseUs />
-        <BMICalculator />
-        <TrainersSection />
-        <TestminialSection />
-        <ClassTimeTable />
-        <PricingSection />
-        <LatestEvents />
-        <LatestNews />
-        <ScrollToTopWaterFill />
-      </div>
-    </ProtectedRoute>
+    <div>
+      <HeroSection />
+      <GroupWorkout />
+      <StatsSection />
+      <WhyChooseUs />
+      <BMICalculator />
+      <TrainersSection />
+      <TestminialSection />
+      <ClassTimeTable />
+      <PricingSection />
+      <LatestEvents />
+      <LatestNews />
+      <ScrollToTopWaterFill />
+    </div>
   );
 }

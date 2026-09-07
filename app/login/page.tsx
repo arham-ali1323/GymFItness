@@ -1,149 +1,82 @@
-"use client";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import LoginForm from "./login-form";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dumbbell, Eye, EyeOff, Loader2 } from "lucide-react";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import ScrollToTopWaterFill from "@/components/ui/back-to-top";
+export const metadata: Metadata = {
+  title: "Member Login | German Fitness Sahiwal",
+  description:
+    "Log in to your German Fitness Sahiwal member account to manage your membership, view class schedules, track your fitness progress, and renew your subscription online.",
+  alternates: {
+    canonical: "/login",
+  },
+};
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  
-  const router = useRouter();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    try {
-      const result = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError('Invalid email or password');
-      } else {
-        router.push('/');
-        router.refresh();
-      }
-    } catch (err: any) {
-      setError('Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card className="w-full max-w-md bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-          <CardHeader className="space-y-1">
-            <div className="flex items-center justify-center mb-4">
-              <div className="flex items-center space-x-2">
-                <Dumbbell className="h-8 w-8 text-orange-500" />
-                <span className="text-2xl font-bold font-orbitron text-white">GERMAN FITNESS</span>
-              </div>
-            </div>
-            <CardTitle className="text-2xl text-center text-white">Welcome Back</CardTitle>
-            <CardDescription className="text-center text-gray-400">
-              Enter your credentials to access your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {error && (
-              <div className="bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-300">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-orange-500"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-300">Password</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-orange-500"
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400 hover:text-white"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </div>
-              <Button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
-                  </>
-                ) : (
-                  'Sign In'
-                )}
-              </Button>
-            </form>
-            
-            <div className="text-center text-sm">
-              <Link href="/forgot-password" className="text-orange-500 hover:underline">
-                Forgot your password?
-              </Link>
-            </div>
-            
-            <div className="text-center text-sm text-gray-400">
-              Don&apos;t have an account?{" "}
-              <Link href="/register" className="text-orange-500 hover:underline font-semibold">
-                Sign up
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-      <ScrollToTopWaterFill />
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black px-4 py-16 md:py-24">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+        <section>
+          <h1 className="mb-4 text-3xl font-bold text-slate-100 md:text-5xl">
+            Member Login —{" "}
+            <span className="text-orange-500">German Fitness Sahiwal</span>
+          </h1>
+          <p className="mb-5 text-lg text-slate-400">
+            Welcome back to Sahiwal's premier fitness destination. Sign in to
+            your secure member account to access your personalized dashboard,
+            manage your membership, and take the next step in your fitness
+            journey.
+          </p>
+          <p className="mb-5 text-slate-400">
+            Your German Fitness account is the central hub for everything
+            related to your workout experience. Track your attendance, check the
+            weekly class timetable, monitor your transformative 90-day gym
+            program, and keep your payment details up to date — all from one
+            place.
+          </p>
+          <p className="mb-5 text-slate-400">
+            With more than 500 happy members, 24/7 gym access, expert personal
+            trainers, and personalized nutrition plans, German Fitness is
+            widely regarded as the best gym in Sahiwal and across Pakistan for
+            anyone serious about results. Our dedicated coaching team helps you
+            build muscle, lose weight safely, and develop healthy habits that
+            last a lifetime.
+          </p>
+          <p className="mb-8 text-slate-400">
+            Having trouble signing in? Use the forgot password link to reset
+            your password, or contact our friendly front desk and a German
+            Fitness team member will get you back on track right away. New to
+            the gym? Create a free account or book a trial session to experience
+            our premium equipment, group fitness classes, and expert coaching
+            before you commit.
+          </p>
+
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            What you can do after logging in
+          </h2>
+          <ul className="mb-8 space-y-2 text-slate-400">
+            <li className="flex gap-2">
+              <span className="text-orange-500">–</span>
+              Track your workouts, attendance, and fitness progress
+            </li>
+            <li className="flex gap-2">
+              <span className="text-orange-500">–</span>
+              View the weekly class timetable and reserve your spot
+            </li>
+            <li className="flex gap-2">
+              <span className="text-orange-500">–</span>
+              Manage and renew your gym membership online
+            </li>
+            <li className="flex gap-2">
+              <span className="text-orange-500">–</span>
+              Access your personalized nutrition and training plans
+            </li>
+          </ul>
+        </section>
+
+        <Suspense fallback={null}>
+          <LoginForm />
+        </Suspense>
+      </div>
     </div>
   );
 }

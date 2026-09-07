@@ -281,10 +281,10 @@ export default function PricingSection() {
                     whileTap={{ scale: 0.98 }}
                   >
                     {plan.popular ? (
-                      <span className="flex items-center justify-center gap-2">
-                        <Zap className="w-5 h-5" />
-                        JOIN NOW - LIMITED OFFER
-                      </span>
+                     <span className="flex items-center justify-center gap-0 whitespace-nowrap">
+  <Zap className="h-5 w-5 shrink-0" />
+  JOIN NOW -<br/> LIMITED OFFER
+</span>
                     ) : (
                       'START TODAY'
                     )}

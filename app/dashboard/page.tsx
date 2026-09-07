@@ -1,14 +1,8 @@
 import React from "react";
-import FitnessDashboard from "@/components/dashboard/fitness-dashboard";
-import ScrollToTopWaterFill from "@/components/ui/back-to-top";
+import AdminOverview from "@/components/dashboard/admin-overview";
 
 const Dashboard = () => {
-  return (
-    <>
-      <FitnessDashboard />
-      <ScrollToTopWaterFill />
-    </>
-  );
+  return <AdminOverview />;
 };
 
 export default Dashboard;

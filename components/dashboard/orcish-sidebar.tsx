@@ -11,17 +11,13 @@ import {
   ChevronDown,
   ChevronRight,
   LayoutDashboard,
-  Dumbbell,
-  Apple,
-  Flag,
-  CalendarDays,
   BarChart3,
   UserCircle2,
-  ShieldCheck,
-  Footprints,
   FileText,
-  Table2,
-  Boxes,
+  Package,
+  ShoppingCart,
+  Users,
+  Settings,
   Layers3,
   Sparkles,
   Crown,
@@ -35,48 +31,14 @@ type NavItem = {
 };
 
 const navigation = [
-  { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  {
-    name: "Workout",
-    href: "/user/workouts",
-    icon: Dumbbell,
-    children: [
-      { name: "Workout Filter", href: "/user/workouts/filter" },
-      { name: "Workout Top Filter", href: "/user/workouts/top-filter" },
-      { name: "Body Workout", href: "/user/workouts/body-workout" },
-      { name: "Create Workout", href: "/user/workouts/create" },
-      { name: "Workout Summary", href: "/user/workouts/summary" },
-      { name: "Workout CRUD", href: "/user/workouts/crud" },
-    ],
-  },
-  {
-    name: "Diet Plan",
-    href: "/user/diet-plan",
-    icon: Apple,
-    children: [
-      { name: "Diet Menu", href: "/user/diet-plan/menu" },
-      { name: "Diet Details", href: "/user/diet-plan/details" },
-    ],
-  },
-  { name: "Goals", href: "/user/goals", icon: Flag },
-  { name: "My Schedule", href: "/user/schedule", icon: CalendarDays },
-  { name: "Progress", href: "/user/progress", icon: BarChart3 },
-  { name: "Profile", href: "/user/profile", icon: UserCircle2 },
-  { name: "Authentication", href: "/dashboard/authentication", icon: ShieldCheck, children: [
-    { name: "Sign In", href: "/dashboard/authentication/signin" },
-    { name: "Sign Up", href: "/dashboard/authentication/signup" },
-    { name: "Forgot Password", href: "/dashboard/authentication/forgot-password" },
-    { name: "Reset Password", href: "/dashboard/authentication/reset-password" },
-    { name: "Verify Email", href: "/dashboard/authentication/verify-email" },
-    { name: "Verify Pin", href: "/dashboard/authentication/verify-pin" },
-  ] },
-  { name: "Step", href: "/dashboard/onboarding-step", icon: Footprints },
-  { name: "Table", href: "/dashboard/table", icon: Table2, children: [
-    { name: "Table", href: "/dashboard/table/basic" },
-    { name: "Datatable", href: "/dashboard/table/datatable" },
-    { name: "CRUD", href: "/dashboard/table/crud" },
-  ] },
-
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Products", href: "/dashboard/products", icon: Package },
+  { name: "Categories", href: "/dashboard/categories", icon: Layers3 },
+  { name: "Brands", href: "/dashboard/brands", icon: Sparkles },
+  { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
+  { name: "Customers", href: "/dashboard/customers", icon: Users },
+  { name: "Inventory", href: "/dashboard/inventory", icon: BarChart3 },
+  { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ] satisfies NavItem[];
 
 export function OrcishSidebar() {
@@ -85,14 +47,6 @@ export function OrcishSidebar() {
   const [isMobile, setIsMobile] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
-  const [openMenus, setOpenMenus] = React.useState<Record<string, boolean>>({
-    Workout: true,
-    "Diet Plan": true,
-    Table: true,
-    Form: true,
-    Authentication: true,
-  });
-
   React.useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
@@ -112,20 +66,6 @@ export function OrcishSidebar() {
   };
 
   const isExpanded = isMobile ? isMobileMenuOpen : isHovered;
-  const toggleMenu = (name: string) => {
-    setOpenMenus((prev) => {
-      const newMenus = { ...prev };
-      // Close all other menus
-      Object.keys(newMenus).forEach(key => {
-        if (key !== name) {
-          newMenus[key] = false;
-        }
-      });
-      // Toggle the clicked menu
-      newMenus[name] = !prev[name];
-      return newMenus;
-    });
-  };
 
   return (
     <>
@@ -189,81 +129,26 @@ export function OrcishSidebar() {
 
         <nav className="space-y-1 flex-1 overflow-y-auto scrollbar-thin scrollbar-orange">
           {navigation.map((item) => {
-            const isActive =
-              item.href === "/dashboard"
-                ? pathname === "/dashboard" || pathname === "/user/dashboard"
-                : pathname?.startsWith(item.href) ||
-                  item.children?.some((child) => pathname?.startsWith(child.href));
-            const isMenuOpen = Boolean(openMenus[item.name]);
+            const isActive = pathname === item.href || pathname?.startsWith(item.href);
 
             return (
-              <div key={item.name}>
-                {item.children && isExpanded ? (
-                  <button
-                    type="button"
-                    title={!isExpanded ? item.name : undefined}
-                    onClick={() => toggleMenu(item.name)}
-                    className={cn(
-                      "w-full flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                      "justify-start",
-                      isActive
-                        ? "bg-orange-500 text-white"
-                        : isDark
-                          ? "text-slate-300 hover:bg-slate-900"
-                          : "text-slate-600 hover:bg-slate-100"
-                    )}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span className="ml-3 whitespace-nowrap">{item.name}</span>
-                    {isMenuOpen ? (
-                      <ChevronDown className="ml-auto h-4 w-4" />
-                    ) : (
-                      <ChevronRight className="ml-auto h-4 w-4" />
-                    )}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    title={!isExpanded ? item.name : undefined}
-                    className={cn(
-                      "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                      isExpanded ? "justify-start" : "justify-center",
-                      isActive
-                        ? "bg-orange-500 text-white"
-                        : isDark
-                          ? "text-slate-300 hover:bg-slate-900"
-                          : "text-slate-600 hover:bg-slate-100"
-                    )}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    {isExpanded && <span className="ml-3 whitespace-nowrap">{item.name}</span>}
-                  </Link>
+              <Link
+                key={item.name}
+                href={item.href}
+                title={!isExpanded ? item.name : undefined}
+                className={cn(
+                  "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                  isExpanded ? "justify-start" : "justify-center",
+                  isActive
+                    ? "bg-orange-500 text-white"
+                    : isDark
+                      ? "text-slate-300 hover:bg-slate-900"
+                      : "text-slate-600 hover:bg-slate-100"
                 )}
-
-                {item.children && isExpanded && isMenuOpen && (
-                  <div className="mt-1 ml-8 space-y-1">
-                    {item.children.map((child) => {
-                      const isChildActive = pathname?.startsWith(child.href);
-                      return (
-                        <Link
-                          key={child.name}
-                          href={child.href}
-                          className={cn(
-                            "block rounded-md px-2 py-1.5 text-xs transition-colors",
-                            isChildActive
-                              ? "text-orange-500 font-medium"
-                              : isDark
-                                ? "text-slate-400 hover:text-slate-200"
-                                : "text-slate-500 hover:text-slate-700"
-                          )}
-                        >
-                          {child.name}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+              >
+                <item.icon className="h-4 w-4" />
+                {isExpanded && <span className="ml-3 whitespace-nowrap">{item.name}</span>}
+              </Link>
             );
           })}
         </nav>

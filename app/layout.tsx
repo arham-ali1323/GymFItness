@@ -5,7 +5,6 @@ import Providers from "@/components/providers/session-provider";
 import { ActiveThemeProvider } from "@/components/dashboard/active-theme";
 import ConditionalSiteChrome from "@/components/layout/conditional-site-chrome";
 import LayoutWrapper from "@/components/layout/layout-wrapper";
-import { AuthProvider } from "@/lib/authContext";
 
 
 const orbitron = Orbitron({
@@ -103,15 +102,13 @@ export default function RootLayout({
         className={`${geistMono.variable} ${orbitron.variable} antialiased`}
         suppressHydrationWarning
       >
-        <AuthProvider>
+        <Providers>
           <ActiveThemeProvider>
-            <Providers>
-              <LayoutWrapper>
-                <ConditionalSiteChrome>{children}</ConditionalSiteChrome>
-              </LayoutWrapper>
-            </Providers>
+            <LayoutWrapper>
+              <ConditionalSiteChrome>{children}</ConditionalSiteChrome>
+            </LayoutWrapper>
           </ActiveThemeProvider>
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

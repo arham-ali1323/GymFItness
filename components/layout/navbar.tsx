@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Mail, Phone, MapPin, Menu, X, ChevronDown, LogOut, User } from "lucide-react";
+import { Mail, Phone, MapPin, Menu, X, ChevronDown, User, LogOut } from "lucide-react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -15,6 +15,8 @@ import { services } from "@/data/services";
 import { brands } from "@/data/brands";
 
 export default function Navbar() {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [moreDropdown, setMoreDropdown] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
@@ -22,8 +24,11 @@ export default function Navbar() {
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(
     null,
   );
-  const { data: session } = useSession();
-  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push('/');
+  };
 
   const handleMoreMouseEnter = () => {
     if (dropdownTimeout) {
@@ -68,11 +73,6 @@ export default function Navbar() {
       setBrandsDropdown(false);
     }, 150);
     setDropdownTimeout(timeout);
-  };
-
-  const handleLogout = async () => {
-    await signOut({ redirect: false });
-    router.push('/login');
   };
 
   return (
@@ -298,6 +298,9 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {session?.user ? (
               <div className="hidden lg:flex items-center gap-3">
+                <Link href="/dashboard" className="bg-orange-500 px-4 py-2 text-sm font-bold text-white uppercase hover:bg-orange-400 transition">
+                  Dashboard
+                </Link>
                 <div className="flex items-center gap-2 text-sm">
                   <User className="w-4 h-4 text-orange-500" />
                   <span className="text-gray-300">{session.user.name}</span>
@@ -311,9 +314,9 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <button className="hidden lg:block bg-orange-500 px-6 py-3 text-sm font-bold text-white uppercase hover:bg-orange-400 transition">
-                Join Us Today
-              </button>
+              <Link href="/login" className="hidden lg:block bg-orange-500 px-6 py-3 text-sm font-bold text-white uppercase hover:bg-orange-400 transition">
+                Dashboard
+              </Link>
             )}
 
             {/* Mobile Toggle */}
@@ -482,12 +485,22 @@ export default function Navbar() {
 
             {session?.user ? (
               <div className="mt-4 flex flex-col items-center gap-3">
+                <Link
+                  href="/dashboard"
+                  className="bg-orange-500 px-8 py-3 text-white text-sm font-bold uppercase"
+                  onClick={() => setOpen(false)}
+                >
+                  Dashboard
+                </Link>
                 <div className="flex items-center gap-2 text-sm">
                   <User className="w-4 h-4 text-orange-500" />
                   <span className="text-gray-300">{session.user.name}</span>
                 </div>
                 <button
-                  onClick={handleLogout}
+                  onClick={() => {
+                    handleLogout();
+                    setOpen(false);
+                  }}
                   className="flex items-center gap-2 bg-orange-500 px-6 py-3 text-white text-sm font-bold uppercase"
                 >
                   <LogOut className="w-4 h-4" />
@@ -495,9 +508,13 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <button className="mt-4 bg-orange-500 px-8 py-3 text-white text-sm font-bold uppercase">
-                Join Us Today
-              </button>
+              <Link
+                href="/login"
+                className="mt-4 bg-orange-500 px-8 py-3 text-white text-sm font-bold uppercase"
+                onClick={() => setOpen(false)}
+              >
+                Login
+              </Link>
             )}
           </nav>
         </div>

@@ -65,14 +65,14 @@ export default function StatsSection() {
             </h2>
           </div>
 
-          <p className="mt-6 text-gray-400 font-semibold max-w-md">
+          <p className="my-6 text-gray-400 font-semibold max-w-md">
             we understand that your lifestyle changes, that’s why we’ve made
             fitness straightforward and stress free. Join today on a no lock-in
             contract membership and start achieving your fitness goals. We value
             flexibility at Jetts, with unlimited 24/7 access.
           </p>
 
-          <Link href="/dashboard/authentication/signin" className="mt-8 px-8 py-4 border-2 border-orange-500 text-sm font-bold uppercase text-white hover:bg-orange-500 hover:text-black transition shadow-[0_0_20px_rgba(255,90,30,0.4)]">
+          <Link href="/dashboard/authentication/signin" className="mt-4 px-8 py-4 border-2 border-orange-500 text-sm font-bold uppercase text-white hover:bg-orange-500 hover:text-black transition shadow-[0_0_20px_rgba(255,90,30,0.4)]">
             Get started today +
           </Link>
         </div>
